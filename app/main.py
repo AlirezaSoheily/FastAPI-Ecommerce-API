@@ -1,5 +1,7 @@
 from app.routers import products, categories, carts, users, auth, accounts
 from fastapi import FastAPI
+from app.db.database import SessionLocal
+from app.core.init_app import initialize_app_data
 
 
 description = """
@@ -53,3 +55,12 @@ app.include_router(carts.router)
 app.include_router(users.router)
 app.include_router(accounts.router)
 app.include_router(auth.router)
+
+
+@app.on_event("startup")
+def on_startup():
+    db = SessionLocal()
+    try:
+        initialize_app_data(db)
+    finally:
+        db.close()
