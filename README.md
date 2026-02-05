@@ -149,6 +149,20 @@ A simple Ecommerce API built with Fast API Framework
    pip install -r requirements.txt
    ```
 
+
+6. **Optional: configure startup initialization in `.env`:**
+
+   ```env
+   INIT_SUPERADMIN_USERNAME=admin
+   INIT_SUPERADMIN_EMAIL=admin@example.com
+   INIT_SUPERADMIN_PASSWORD=ChangeMe123!
+   INIT_SUPERADMIN_FULL_NAME=Super Admin
+   INIT_DEFAULT_CATEGORIES=Electronics,Fashion,Home
+   ```
+
+   - If the super admin values are present, the app creates that admin automatically at startup (only if it does not already exist).
+   - If `INIT_DEFAULT_CATEGORIES` is provided, the categories are inserted once and skipped if they already exist.
+
 ## Usage
 
 1. **Run Alembic migrations:**
